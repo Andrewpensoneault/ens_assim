@@ -1,0 +1,21 @@
+## This file contains the definition of classes of measurement algorithms. To add a new algorithm, add a new subclass to
+## measure.py and give it a method get_current_meas
+##
+## Written by: Andrew Pensoneault
+
+class Measure(object):
+    ## Parent 
+    def __init__(self):
+        pass
+
+    def set_percent_error(self, percent_error):
+        self.percent_error = percent_error
+    
+    def set_absolute_error(self, absolute_error):
+        self.absolute_error = absolute_error
+
+    def set_measurements(self, measurements):
+        self.measurements = measurements
+    
+    def set_operator(self, operator):
+        self.operator = operator
