@@ -1,4 +1,4 @@
-import ifc_io
+import ifc.ifc_io as ifc_io
 import numpy as np
 import numpy.linalg as linalg
 import scipy as sp
@@ -12,18 +12,16 @@ def read_measurements(measure_directory, measure_ids, measure_filename):
     for id_idx in range(len(measure_ids)):
         current_id = measure_ids[id_idx] 
         filename = measure_directory + '/' + current_id + '_' + measure_filename
-        contents = measure_reader.read()
+        contents = meas_reader.read(filename)
         measurement_dict[current_id] = contents
     return measurement_dict
 
-def get_current_measurements(measurement_dict,id_list,time_start,time_step_size,step_num):
+def get_current_measurements(measurement_dict,id_list,use_list,time_start,time_step_size,step_num):
     MINUTE_IN_SECONDS = 60
-    meas_ids = measurement_dict.keys()
     measurement = np.zeros((0,1))
     measurement_index = np.zeros((0,1))
-    for ids in meas_ids:
+    for ids in use_list:
         if ids in id_list:
-            id_index = np.nonzero(ids == id_list)
             measure = measurement_dict[ids]
             for steps in range(step_num):
                 measure_times = measure[:,0]
@@ -46,13 +44,21 @@ def get_current_measurements(measurement_dict,id_list,time_start,time_step_size,
             pass
     return measurement_index, measurement
 
-def create_operator(measurement_index, variable_num, total_ids, id_list):
+def create_operator(measurement_index, link_variable_num, total_links, id_list):
+    num_measurements = measurement_index.shape[0]
+    total_variables = total_links * link_variable_num
+    index_list = []
+    for meas_num in range(len(num_measurements)): 
+        current_link_id  = measurement_index[meas_num,0]
+        current_time_num = measurement_index[meas_num,1]
+        link_id_idx = np.nonzero(current_link_id == num_measurements)
+        current_index = link_id_idx*link_variable_num + current_time_num*total_variables
+        index_list.append(current_index)
+    operator = lambda x: x[index_list,:]
+    return operator
 
+def augment_operators(operator_1,operator_2):
+    return lambda x: np.stack((operator_1(x),operator_2(x)),axis=0)
 
-def create_covariance(measurement, absolute_error, relative_error):
-    HEADER_ROW = 1
-    meas_reader = ifc_io.CsvFileReader()
-    meas_reader.set_skip_rows = HEADER_ROW
-    for id_idx in range(len(measure_ids)):
-        filename = measure_directory + '/' + measure_ids[id_idx]
-        measure_reader.read()
+def create_covariance(measurement, index, absolute_std, relative_std):
+    return np.diag(absolute_std[index]**2) + np.diag((relative_std[index]*measurement)**2)

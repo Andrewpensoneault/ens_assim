@@ -9,12 +9,12 @@ import os.path
 from itertools import chain
 from datetime import datetime
 from model.model import Model
-import ifc_io
+import ifc.ifc_io as ifc_io
 
 class IFC_Model(Model):
     ## Runs the river model from the IFC
     def __init__(self, initial_conditions):
-        super().__init__(self,initial_conditions)
+        super().__init__(initial_conditions)
     
     def set_global_parameters(self, global_parameters):
         self.global_parameters = global_parameters
@@ -28,8 +28,8 @@ class IFC_Model(Model):
     def set_directory_dict(self,directory_dict):
         self.directory_dict = directory_dict
     
-    def set_num_steps(self,num_steps):
-        self.num_steps = num_steps  
+    def set_num_step(self,num_step):
+        self.num_step = num_step  
     
     def set_model_num(self,model_num):
         self.model_num = model_num
@@ -45,6 +45,8 @@ class IFC_Model(Model):
 
     def initialize(self):
         self._read_initial_files()
+        initial_conditions = self.initial_dict['ini'][1]
+        return initial_conditions
     
     def advance(self):
         self._get_current_rain()
@@ -62,8 +64,8 @@ class IFC_Model(Model):
 
         HOUR_IN_SECONDS = 3600
         MINUTE_IN_SECONDS = 60
-        current_rain = np.zeros((self.total_links,self.num_steps))
-        for time in range(self.num_steps):
+        current_rain = np.zeros((self.total_links,self.num_step))
+        for time in range(self.num_step):
             time_now = self.start_time + MINUTE_IN_SECONDS*self.time_step*time
             last_hour_time = np.floor(time_now/HOUR_IN_SECONDS)*HOUR_IN_SECONDS
             last_hour_rain_idx = np.nonzero(rain_times == last_hour_time)[0]
@@ -82,7 +84,7 @@ class IFC_Model(Model):
                         current_rain[link,time] = 0.0
         self.current_rain = current_rain
         self.time_list = np.array([self.start_time+MINUTE_IN_SECONDS*self.time_step*time
-                                   for time in range(self.num_steps)])
+                                   for time in range(self.num_step)])
 
     def _generate_ensemble_files(self):
         tmp_folder = self.directory_dict['tmp']
@@ -136,7 +138,7 @@ class IFC_Model(Model):
     def _make_final(self):
             output_folder = self.directory_dict['output']
             state_dim = self.initial_conditions.shape[0]
-            final_state = np.zeros((state_dim, self.ens_num, self.num_steps))
+            final_state = np.zeros((state_dim, self.ens_num, self.num_step))
             for particle in range(self.ens_num):
                 output_filename = output_folder + '/' + '%05d' % (particle) + '.csv'
                 final_state[:,particle,:] = self._read_output_file(output_filename)
@@ -173,13 +175,13 @@ class IFC_Model(Model):
         ini_reader = ifc_io.IniFileReader()
         sav_reader = ifc_io.SavFileReader()
         prm_reader = ifc_io.PrmFileReader()
-        rvr_reader = ifc_io.RvrFileReader()
+        #rvr_reader = ifc_io.RvrFileReader()
         rain_reader = ifc_io.CsvFileReader()
         evp_reader = ifc_io.EvpFileReader() 
         gbl_reader = ifc_io.GblFileReader()
 
         prm_filename = input_folder + '/' + self.filename_dict['prm']
-        rvr_filename = input_folder + '/' + self.filename_dict['rvr']
+        #rvr_filename = input_folder + '/' + self.filename_dict['rvr']
         ini_filename = input_folder + '/' + self.filename_dict['ini']
         sav_filename = input_folder + '/' + self.filename_dict['sav']
         evp_filename = input_folder + '/' + self.filename_dict['evp']

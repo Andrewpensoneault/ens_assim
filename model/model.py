@@ -6,21 +6,16 @@ from abc import ABC, abstractmethod
 
 class Model(ABC):
     ## Parent 
-    @abstractmethod
     def __init__(self, initial_conditions):
         self.initial_conditions = initial_conditions
         self.ens_num = initial_conditions.shape[1]
-
     
-    @abstractmethod
     def set_initial_conditions(self, initial_conditions):
         self.initial_conditions = initial_conditions
         self.ens_num = initial_conditions.shape[1]
 
-    @abstractmethod
     def advance(self):
         pass
-
 
 class identity(Model):
     ## Identity Model 

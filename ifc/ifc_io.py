@@ -76,7 +76,6 @@ class FileWriter(ABC):
     def set_total_links(self,total_links):
         self.total_links = total_links
 
-
 class IniFileWriter(FileWriter):
     def __init__(self):
         pass
@@ -109,13 +108,16 @@ class StrFileWriter(FileWriter):
         self.forcing_times = forcing_times
     def set_forcing_data(self,forcing_data):
         self.forcing_data = forcing_data
+    def set_time_step(self,time_step):
+        self.time_step = time_step
     def write(self,filename):
         num_times = len(self.forcing_times)
-        time_list = num_times*np.ones(self.total_links,dtype="int")
+        total_links = len(self.link_ids)
+        time_list = num_times*np.ones(total_links,dtype="int")
         id_contents = np.array([self.link_ids,time_list]).T
-        id_list = id_contents.tolist()
+        id_list = self.link_ids.tolist()
         id_contents = [' '.join(map(str, x)) for x in id_list]
-        cycle_num = np.array([i*self.time_interval for i in range(id_list)])
+        cycle_num = np.array([i*self.time_step for i in range(id_list)])
         time_rain = np.tile(cycle_num,self.total_links)
 
         rain_content = np.array([time_rain, self.forcing_data.flatten()]).T
@@ -140,6 +142,9 @@ class GblFileWriter(FileWriter):
         self.time_range = time_range
     def set_filename_dict(self,filename_dict):
         self.filename_dict = filename_dict
+    def set_model_num(self,model_num):
+        self.model_num = model_num
+
     def write(self,filename):
         contents = self.gbl_template
         contents[1] = str(self.model_num)

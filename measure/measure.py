@@ -8,11 +8,8 @@ class Measure(object):
     def __init__(self):
         pass
 
-    def set_percent_error(self, percent_error):
-        self.percent_error = percent_error
-    
-    def set_absolute_error(self, absolute_error):
-        self.absolute_error = absolute_error
+    def set_covariance(self, covariance):
+        self.covariance = covariance
 
     def set_measurements(self, measurements):
         self.measurements = measurements
