@@ -298,7 +298,7 @@ class SIR(Assimilate):
 
         Parameters
         ----------
-        likelihood: yupe.LambdaType
+        likelihood: type.LambdaType
             lambda function for the likelihood function of the data
 
         Raises
