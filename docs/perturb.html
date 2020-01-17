@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module perturb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>perturb</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/andrew/Dropbox/Research/Ens_Assim/ens_assim/perturb.py">/home/andrew/Dropbox/Research/Ens_Assim/ens_assim/perturb.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-absolute_uncorr_perturb"><strong>absolute_uncorr_perturb</strong></a>(state, absolute_std)</dt><dd><tt>Perturbs&nbsp;the&nbsp;state&nbsp;array&nbsp;given&nbsp;absolute&nbsp;standard<br>
+deviation&nbsp;diagonal&nbsp;of&nbsp;covariance&nbsp;matrix.&nbsp;Thus,&nbsp;it&nbsp;<br>
+makes&nbsp;an&nbsp;assumption&nbsp;of&nbsp;uncorrelated&nbsp;random&nbsp;noise.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Parameters<br>
+----------<br>
+state&nbsp;:&nbsp;np.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ensemble&nbsp;of&nbsp;states&nbsp;<br>
+absolute_std:&nbsp;np.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;absolute&nbsp;standard&nbsp;deviation&nbsp;of&nbsp;the&nbsp;states<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;absolute_std&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+ <dl><dt><a name="-normal"><strong>normal</strong></a>(...)<font color="#909090"><font face="helvetica, arial"> method of <a href="numpy.random.mtrand.html#RandomState">numpy.random.mtrand.RandomState</a> instance</font></font></dt><dd><tt><a href="#-normal">normal</a>(loc=0.0,&nbsp;scale=1.0,&nbsp;size=None)<br>
+&nbsp;<br>
+Draw&nbsp;random&nbsp;samples&nbsp;from&nbsp;a&nbsp;normal&nbsp;(Gaussian)&nbsp;distribution.<br>
+&nbsp;<br>
+The&nbsp;probability&nbsp;density&nbsp;function&nbsp;of&nbsp;the&nbsp;normal&nbsp;distribution,&nbsp;first<br>
+derived&nbsp;by&nbsp;De&nbsp;Moivre&nbsp;and&nbsp;200&nbsp;years&nbsp;later&nbsp;by&nbsp;both&nbsp;Gauss&nbsp;and&nbsp;Laplace<br>
+independently&nbsp;[2]_,&nbsp;is&nbsp;often&nbsp;called&nbsp;the&nbsp;bell&nbsp;curve&nbsp;because&nbsp;of<br>
+its&nbsp;characteristic&nbsp;shape&nbsp;(see&nbsp;the&nbsp;example&nbsp;below).<br>
+&nbsp;<br>
+The&nbsp;normal&nbsp;distributions&nbsp;occurs&nbsp;often&nbsp;in&nbsp;nature.&nbsp;&nbsp;For&nbsp;example,&nbsp;it<br>
+describes&nbsp;the&nbsp;commonly&nbsp;occurring&nbsp;distribution&nbsp;of&nbsp;samples&nbsp;influenced<br>
+by&nbsp;a&nbsp;large&nbsp;number&nbsp;of&nbsp;tiny,&nbsp;random&nbsp;disturbances,&nbsp;each&nbsp;with&nbsp;its&nbsp;own<br>
+unique&nbsp;distribution&nbsp;[2]_.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+loc&nbsp;:&nbsp;float&nbsp;or&nbsp;array_like&nbsp;of&nbsp;floats<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Mean&nbsp;("centre")&nbsp;of&nbsp;the&nbsp;distribution.<br>
+scale&nbsp;:&nbsp;float&nbsp;or&nbsp;array_like&nbsp;of&nbsp;floats<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Standard&nbsp;deviation&nbsp;(spread&nbsp;or&nbsp;"width")&nbsp;of&nbsp;the&nbsp;distribution.&nbsp;Must&nbsp;be<br>
+&nbsp;&nbsp;&nbsp;&nbsp;non-negative.<br>
+size&nbsp;:&nbsp;int&nbsp;or&nbsp;tuple&nbsp;of&nbsp;ints,&nbsp;optional<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Output&nbsp;shape.&nbsp;&nbsp;If&nbsp;the&nbsp;given&nbsp;shape&nbsp;is,&nbsp;e.g.,&nbsp;``(m,&nbsp;n,&nbsp;k)``,&nbsp;then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;``m&nbsp;*&nbsp;n&nbsp;*&nbsp;k``&nbsp;samples&nbsp;are&nbsp;drawn.&nbsp;&nbsp;If&nbsp;size&nbsp;is&nbsp;``None``&nbsp;(default),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;single&nbsp;value&nbsp;is&nbsp;returned&nbsp;if&nbsp;``loc``&nbsp;and&nbsp;``scale``&nbsp;are&nbsp;both&nbsp;scalars.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Otherwise,&nbsp;``np.broadcast(loc,&nbsp;scale).size``&nbsp;samples&nbsp;are&nbsp;drawn.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+out&nbsp;:&nbsp;ndarray&nbsp;or&nbsp;scalar<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Drawn&nbsp;samples&nbsp;from&nbsp;the&nbsp;parameterized&nbsp;normal&nbsp;distribution.<br>
+&nbsp;<br>
+See&nbsp;Also<br>
+--------<br>
+scipy.stats.norm&nbsp;:&nbsp;probability&nbsp;density&nbsp;function,&nbsp;distribution&nbsp;or<br>
+&nbsp;&nbsp;&nbsp;&nbsp;cumulative&nbsp;density&nbsp;function,&nbsp;etc.<br>
+&nbsp;<br>
+Notes<br>
+-----<br>
+The&nbsp;probability&nbsp;density&nbsp;for&nbsp;the&nbsp;Gaussian&nbsp;distribution&nbsp;is<br>
+&nbsp;<br>
+..&nbsp;math::&nbsp;p(x)&nbsp;=&nbsp;\frac{1}{\sqrt{&nbsp;2&nbsp;\pi&nbsp;\sigma^2&nbsp;}}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e^{&nbsp;-&nbsp;\frac{&nbsp;(x&nbsp;-&nbsp;\mu)^2&nbsp;}&nbsp;{2&nbsp;\sigma^2}&nbsp;},<br>
+&nbsp;<br>
+where&nbsp;:math:`\mu`&nbsp;is&nbsp;the&nbsp;mean&nbsp;and&nbsp;:math:`\sigma`&nbsp;the&nbsp;standard<br>
+deviation.&nbsp;The&nbsp;square&nbsp;of&nbsp;the&nbsp;standard&nbsp;deviation,&nbsp;:math:`\sigma^2`,<br>
+is&nbsp;called&nbsp;the&nbsp;variance.<br>
+&nbsp;<br>
+The&nbsp;function&nbsp;has&nbsp;its&nbsp;peak&nbsp;at&nbsp;the&nbsp;mean,&nbsp;and&nbsp;its&nbsp;"spread"&nbsp;increases&nbsp;with<br>
+the&nbsp;standard&nbsp;deviation&nbsp;(the&nbsp;function&nbsp;reaches&nbsp;0.607&nbsp;times&nbsp;its&nbsp;maximum&nbsp;at<br>
+:math:`x&nbsp;+&nbsp;\sigma`&nbsp;and&nbsp;:math:`x&nbsp;-&nbsp;\sigma`&nbsp;[2]_).&nbsp;&nbsp;This&nbsp;implies&nbsp;that<br>
+`numpy.random.normal`&nbsp;is&nbsp;more&nbsp;likely&nbsp;to&nbsp;return&nbsp;samples&nbsp;lying&nbsp;close&nbsp;to<br>
+the&nbsp;mean,&nbsp;rather&nbsp;than&nbsp;those&nbsp;far&nbsp;away.<br>
+&nbsp;<br>
+References<br>
+----------<br>
+..&nbsp;[1]&nbsp;Wikipedia,&nbsp;"Normal&nbsp;distribution",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://en.wikipedia.org/wiki/Normal_distribution<br>
+..&nbsp;[2]&nbsp;P.&nbsp;R.&nbsp;Peebles&nbsp;Jr.,&nbsp;"Central&nbsp;Limit&nbsp;Theorem"&nbsp;in&nbsp;"Probability,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Random&nbsp;Variables&nbsp;and&nbsp;Random&nbsp;Signal&nbsp;Principles",&nbsp;4th&nbsp;ed.,&nbsp;2001,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pp.&nbsp;51,&nbsp;51,&nbsp;125.<br>
+&nbsp;<br>
+Examples<br>
+--------<br>
+Draw&nbsp;samples&nbsp;from&nbsp;the&nbsp;distribution:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;mu,&nbsp;sigma&nbsp;=&nbsp;0,&nbsp;0.1&nbsp;#&nbsp;mean&nbsp;and&nbsp;standard&nbsp;deviation<br>
+&gt;&gt;&gt;&nbsp;s&nbsp;=&nbsp;np.random.<a href="#-normal">normal</a>(mu,&nbsp;sigma,&nbsp;1000)<br>
+&nbsp;<br>
+Verify&nbsp;the&nbsp;mean&nbsp;and&nbsp;the&nbsp;variance:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;abs(mu&nbsp;-&nbsp;np.mean(s))<br>
+0.0&nbsp;&nbsp;#&nbsp;may&nbsp;vary<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;abs(sigma&nbsp;-&nbsp;np.std(s,&nbsp;ddof=1))<br>
+0.1&nbsp;&nbsp;#&nbsp;may&nbsp;vary<br>
+&nbsp;<br>
+Display&nbsp;the&nbsp;histogram&nbsp;of&nbsp;the&nbsp;samples,&nbsp;along&nbsp;with<br>
+the&nbsp;probability&nbsp;density&nbsp;function:<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;import&nbsp;matplotlib.pyplot&nbsp;as&nbsp;plt<br>
+&gt;&gt;&gt;&nbsp;count,&nbsp;bins,&nbsp;ignored&nbsp;=&nbsp;plt.hist(s,&nbsp;30,&nbsp;density=True)<br>
+&gt;&gt;&gt;&nbsp;plt.plot(bins,&nbsp;1/(sigma&nbsp;*&nbsp;np.sqrt(2&nbsp;*&nbsp;np.pi))&nbsp;*<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;np.exp(&nbsp;-&nbsp;(bins&nbsp;-&nbsp;mu)**2&nbsp;/&nbsp;(2&nbsp;*&nbsp;sigma**2)&nbsp;),<br>
+...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linewidth=2,&nbsp;color='r')<br>
+&gt;&gt;&gt;&nbsp;plt.show()<br>
+&nbsp;<br>
+Two-by-four&nbsp;array&nbsp;of&nbsp;samples&nbsp;from&nbsp;N(3,&nbsp;6.25):<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;np.random.<a href="#-normal">normal</a>(3,&nbsp;2.5,&nbsp;size=(2,&nbsp;4))<br>
+array([[-4.49401501,&nbsp;&nbsp;4.00950034,&nbsp;-1.81814867,&nbsp;&nbsp;7.29718677],&nbsp;&nbsp;&nbsp;#&nbsp;random<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;0.39924804,&nbsp;&nbsp;4.68456316,&nbsp;&nbsp;4.99394529,&nbsp;&nbsp;4.84057254]])&nbsp;&nbsp;#&nbsp;random</tt></dd></dl>
+ <dl><dt><a name="-percent_uncorr_perturb"><strong>percent_uncorr_perturb</strong></a>(state, percent_std)</dt><dd><tt>Perturbs&nbsp;the&nbsp;state&nbsp;array&nbsp;given&nbsp;percent&nbsp;standard<br>
+deviation&nbsp;diagonal&nbsp;of&nbsp;covariance&nbsp;matrix.&nbsp;Thus,&nbsp;it&nbsp;<br>
+makes&nbsp;an&nbsp;assumption&nbsp;of&nbsp;uncorrelated&nbsp;random&nbsp;noise.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Parameters<br>
+----------<br>
+state&nbsp;:&nbsp;np.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;ensemble&nbsp;of&nbsp;states&nbsp;<br>
+percent_std:&nbsp;np.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;percent&nbsp;standard&nbsp;deviation&nbsp;of&nbsp;the&nbsp;states<br>
+&nbsp;<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;weights&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>MEAN</strong> = 0<br>
+<strong>STD</strong> = 1</td></tr></table>
+</body></html>

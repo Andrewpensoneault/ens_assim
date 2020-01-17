@@ -10,7 +10,8 @@ import scipy.linalg
 import scipy.stats as spstats
 import os
 from abc import ABC, abstractmethod
-from measure.measure import Measure
+import sys
+from ens_assim.measure.measure import Measure
 import types
 
 class Assimilate(ABC):

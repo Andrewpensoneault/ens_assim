@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module assimilate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>assimilate</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/andrew/Dropbox/Research/Ens_Assim/ens_assim/assimilate/assimilate.py">/home/andrew/Dropbox/Research/Ens_Assim/ens_assim/assimilate/assimilate.py</a></font></td></tr></table>
+    <p><tt>##&nbsp;This&nbsp;file&nbsp;contains&nbsp;the&nbsp;definition&nbsp;of&nbsp;classes&nbsp;of&nbsp;assimilation&nbsp;algorithms.&nbsp;To&nbsp;add&nbsp;a&nbsp;new&nbsp;algorithm,&nbsp;add&nbsp;a&nbsp;new&nbsp;subclass&nbsp;to<br>
+##&nbsp;assimilate.py&nbsp;and&nbsp;give&nbsp;it&nbsp;a&nbsp;method&nbsp;assimilate<br>
+##<br>
+##&nbsp;Written&nbsp;by:&nbsp;Andrew&nbsp;Pensoneault</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.linalg.html">numpy.linalg</a><br>
+<a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="scipy.html">scipy</a><br>
+</td><td width="25%" valign=top><a href="scipy.html">scipy</a><br>
+<a href="scipy.stats.html">scipy.stats</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="types.html">types</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="abc.html#ABC">abc.ABC</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="assimilate.html#Assimilate">Assimilate</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="assimilate.html#EnKF">EnKF</a>
+</font></dt><dt><font face="helvetica, arial"><a href="assimilate.html#No_Assimilate">No_Assimilate</a>
+</font></dt><dt><font face="helvetica, arial"><a href="assimilate.html#RSREnKF">RSREnKF</a>
+</font></dt><dt><font face="helvetica, arial"><a href="assimilate.html#SIR">SIR</a>
+</font></dt><dt><font face="helvetica, arial"><a href="assimilate.html#SREnKF">SREnKF</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Assimilate">class <strong>Assimilate</strong></a>(<a href="abc.html#ABC">abc.ABC</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;abstract&nbsp;base&nbsp;class&nbsp;used&nbsp;to&nbsp;represent&nbsp;an&nbsp;Data&nbsp;Assimilation&nbsp;algorithm<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#Assimilate-analyze">analyze</a>(state,&nbsp;measure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Performs&nbsp;the&nbsp;assimilation&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="assimilate.html#Assimilate">Assimilate</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Assimilate-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;Class<br>
+&nbsp;<br>
+Parameters<br>
+----------</tt></dd></dl>
+
+<dl><dt><a name="Assimilate-analyze"><strong>analyze</strong></a>(self, state, measure)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#SREnKF">SREnKF</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+state:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+measure:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;measure&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset({'__init__'})</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="EnKF">class <strong>EnKF</strong></a>(<a href="assimilate.html#Assimilate">Assimilate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Performs&nbsp;a&nbsp;perturbed&nbsp;observation&nbsp;<a href="#EnKF">EnKF</a>&nbsp;based&nbsp;on&nbsp;'Evensen&nbsp;2003'<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#EnKF-analyze">analyze</a>(state,&nbsp;measure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Performs&nbsp;the&nbsp;assimilation&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="assimilate.html#EnKF">EnKF</a></dd>
+<dd><a href="assimilate.html#Assimilate">Assimilate</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="EnKF-analyze"><strong>analyze</strong></a>(self, state, measure)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#EnKF">EnKF</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+state:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+measure:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;measure&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset({'__init__'})</dl>
+
+<hr>
+Methods inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><a name="EnKF-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;Class<br>
+&nbsp;<br>
+Parameters<br>
+----------</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="No_Assimilate">class <strong>No_Assimilate</strong></a>(<a href="assimilate.html#Assimilate">Assimilate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;class&nbsp;for&nbsp;performing&nbsp;no&nbsp;data&nbsp;assimilation<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#No_Assimilate-analyze">analyze</a>(state,&nbsp;measure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Performs&nbsp;the&nbsp;assimilation&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="assimilate.html#No_Assimilate">No_Assimilate</a></dd>
+<dd><a href="assimilate.html#Assimilate">Assimilate</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="No_Assimilate-analyze"><strong>analyze</strong></a>(self, state, measure)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#SREnKF">SREnKF</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+state:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+measure:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;measure&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset({'__init__'})</dl>
+
+<hr>
+Methods inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><a name="No_Assimilate-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;Class<br>
+&nbsp;<br>
+Parameters<br>
+----------</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RSREnKF">class <strong>RSREnKF</strong></a>(<a href="assimilate.html#Assimilate">Assimilate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;class&nbsp;for&nbsp;performing&nbsp;the&nbsp;square&nbsp;root&nbsp;<a href="#EnKF">EnKF</a>&nbsp;with&nbsp;regularization<br>
+term<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#RSREnKF-analyze">analyze</a>(state,&nbsp;measure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Performs&nbsp;the&nbsp;assimilation&nbsp;algorithm<br>
+<a href="#RSREnKF-set_regularizer">set_regularizer</a>(regularize,&nbsp;regularize_prime,&nbsp;w_mat,&nbsp;lam0)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sets&nbsp;parameters&nbsp;associated&nbsp;with&nbsp;regularization<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="assimilate.html#RSREnKF">RSREnKF</a></dd>
+<dd><a href="assimilate.html#Assimilate">Assimilate</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RSREnKF-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;Class<br>
+&nbsp;<br>
+Parameters<br>
+----------</tt></dd></dl>
+
+<dl><dt><a name="RSREnKF-analyze"><strong>analyze</strong></a>(self, state, measure)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#RSREnKF">RSREnKF</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+state:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+measure:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;measure&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<dl><dt><a name="RSREnKF-set_regularizer"><strong>set_regularizer</strong></a>(self, regularize, regularize_prime, w_mat, lam0)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#SREnKF">SREnKF</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+regularize:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+regularize_prime:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+w_mat:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;weight&nbsp;matrix&nbsp;for&nbsp;which&nbsp;the&nbsp;norm&nbsp;is&nbsp;performed&nbsp;in<br>
+lam0:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;base&nbsp;regularizaton&nbsp;parameter<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;any&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Data descriptors inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SIR">class <strong>SIR</strong></a>(<a href="assimilate.html#Assimilate">Assimilate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Performs&nbsp;a&nbsp;Sequential&nbsp;Importance&nbsp;Resampling&nbsp;Particle&nbsp;Filter<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SIR-set_weights">set_weights</a>(weights)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sets&nbsp;the&nbsp;base&nbsp;weight&nbsp;for&nbsp;each&nbsp;particle<br>
+<a href="#SIR-set_likelihood">set_likelihood</a>(likelihood)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sets&nbsp;the&nbsp;likelihood&nbsp;function&nbsp;for&nbsp;the&nbsp;data<br>
+set&nbsp;threshold(threshold)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sets&nbsp;the&nbsp;threshold&nbsp;for&nbsp;effective&nbsp;sample&nbsp;size&nbsp;of&nbsp;the&nbsp;<a href="#SIR">SIR</a><br>
+<a href="#SIR-analyze">analyze</a>(state,&nbsp;measure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Performs&nbsp;the&nbsp;assimilation&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="assimilate.html#SIR">SIR</a></dd>
+<dd><a href="assimilate.html#Assimilate">Assimilate</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SIR-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;Class<br>
+Parameters<br>
+----------</tt></dd></dl>
+
+<dl><dt><a name="SIR-analyze"><strong>analyze</strong></a>(self, state, measure)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#SIR">SIR</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+state&nbsp;:&nbsp;numpy.ndarray:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+measure:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;measure&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<dl><dt><a name="SIR-set_likelihood"><strong>set_likelihood</strong></a>(self, likelihood)</dt><dd><tt>Sets&nbsp;the&nbsp;likelihood&nbsp;for&nbsp;the&nbsp;data<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+likelihood:&nbsp;yupe.LambdaType<br>
+&nbsp;&nbsp;&nbsp;&nbsp;lambda&nbsp;function&nbsp;for&nbsp;the&nbsp;likelihood&nbsp;function&nbsp;of&nbsp;the&nbsp;data<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;any&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<dl><dt><a name="SIR-set_threshold"><strong>set_threshold</strong></a>(self, threshold)</dt><dd><tt>Sets&nbsp;the&nbsp;weights&nbsp;for&nbsp;the&nbsp;particles<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+threshold:&nbsp;float&nbsp;or&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Sets&nbsp;the&nbsp;threshold&nbsp;for&nbsp;the&nbsp;minimum&nbsp;effective&nbsp;sample&nbsp;size<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;any&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<dl><dt><a name="SIR-set_weights"><strong>set_weights</strong></a>(self, weights)</dt><dd><tt>Sets&nbsp;the&nbsp;weights&nbsp;for&nbsp;the&nbsp;particles<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+weights:&nbsp;np.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;weight&nbsp;for&nbsp;each&nbsp;particle<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;any&nbsp;parameter&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Data descriptors inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SREnKF">class <strong>SREnKF</strong></a>(<a href="assimilate.html#Assimilate">Assimilate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;class&nbsp;for&nbsp;performing&nbsp;the&nbsp;square&nbsp;root&nbsp;<a href="#EnKF">EnKF</a>,&nbsp;as&nbsp;seen&nbsp;in<br>
+Law,&nbsp;Stuart,&nbsp;Zygalakis&nbsp;2015<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#SREnKF-analyze">analyze</a>(state,&nbsp;measure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Performs&nbsp;the&nbsp;assimilation&nbsp;algorithm<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="assimilate.html#SREnKF">SREnKF</a></dd>
+<dd><a href="assimilate.html#Assimilate">Assimilate</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SREnKF-analyze"><strong>analyze</strong></a>(self, state, measure)</dt><dd><tt>Performs&nbsp;the&nbsp;<a href="#SREnKF">SREnKF</a>&nbsp;on&nbsp;state&nbsp;with&nbsp;given&nbsp;measurements<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+state:&nbsp;numpy.ndarray<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;states&nbsp;to&nbsp;perform&nbsp;assimilation&nbsp;on<br>
+measure:&nbsp;Measure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;given&nbsp;Class&nbsp;containing&nbsp;information&nbsp;about&nbsp;measurement<br>
+&nbsp;<br>
+Raises<br>
+------<br>
+TypeError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;state&nbsp;or&nbsp;measure&nbsp;is&nbsp;not&nbsp;set&nbsp;or&nbsp;incorrect&nbsp;type</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset({'__init__'})</dl>
+
+<hr>
+Methods inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><a name="SREnKF-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initializes&nbsp;Class<br>
+&nbsp;<br>
+Parameters<br>
+----------</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="assimilate.html#Assimilate">Assimilate</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
