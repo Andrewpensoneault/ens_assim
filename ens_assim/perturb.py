@@ -19,14 +19,7 @@ def absolute_uncorr_perturb(state, absolute_std):
 
     Raises
     ------
-    TypeError
-        If state or absolute_std is not set or incorrect type
     """
-
-    if not isinstance(state,np.ndarray):
-        raise TypeError("'state' must be of type numpy.ndarray")
-    if not isinstance(absolute_std,np.ndarray):
-        raise TypeError("'absolute_std' must be of type numpy.ndarray")
 
     return state + diags(absolute_std)@normal(loc = MEAN,
                                               scale = STD,
@@ -48,14 +41,7 @@ def percent_uncorr_perturb(state, percent_std):
 
     Raises
     ------
-    TypeError
-        If state or weights is not set or incorrect type
     """
-
-    if not isinstance(state,np.ndarray):
-        raise TypeError("'state' must be of type numpy.ndarray")
-    if not isinstance(percent_std,np.ndarray):
-        raise TypeError("'percent_std' must be of type numpy.ndarray")
 
     return state+state*(diags(percent_std)@normal(loc = MEAN,
                                                   scale = STD,

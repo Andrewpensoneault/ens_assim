@@ -15,14 +15,7 @@ def get_mean(state, weights = None):
 
     Raises
     ------
-    TypeError
-        If state or weights is not set or incorrect type
     """
-
-    if not isinstance(state,np.ndarray):
-        raise TypeError("'state' must be of type numpy.ndarray")
-    if not isinstance(weights,np.ndarray):
-        raise TypeError("'weights' must be of type numpy.ndarray")
     
     if weights is None:
         means = np.mean(state, axis=1, keepdims=1)
@@ -45,8 +38,6 @@ def get_std(state, weights = None):
 
     Raises
     ------
-    TypeError
-        If state or weights is not set or incorrect type
     """
 
     means = get_mean(state, weights)

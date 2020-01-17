@@ -33,12 +33,6 @@ class Measure(object):
         operator: np.ndarray or None
             the measurement operator for the data
         """
-        if not isinstance(covariance,(np.ndarray,None)):
-            raise TypeError("'covariance' must be of type int or float")
-        if not isinstance(measurement,(np.ndarray,None)):
-            raise TypeError("'measurement' must be of type int or float")
-        if not isinstance(operator,(np.ndarray,None)):
-            raise TypeError("'operator' must be of type int or float")
 
         self.covariance = covariance
         self.measurement = measurement
@@ -55,11 +49,7 @@ class Measure(object):
 
         Raises
         ------
-        TypeError
-            If covariance is not set or incorrect type
         """
-        if not isinstance(covariance,(np.ndarray,None)):
-            raise TypeError("'covariance' must be of type int or float")
         self.covariance = covariance
 
     def set_measurement(self, measurement):
@@ -73,11 +63,7 @@ class Measure(object):
 
         Raises
         ------
-        TypeError
-            If measurement is not set or incorrect type
         """
-        if not isinstance(measurement,(np.ndarray,None)):
-            raise TypeError("'measurement' must be of type int or float")
         self.measurement = measurement
     
     def set_operator(self, operator):
@@ -91,9 +77,5 @@ class Measure(object):
 
         Raises
         ------
-        TypeError
-            If operator is not set or incorrect type
         """
-        if not isinstance(operator,(np.ndarray,None)):
-            raise TypeError("'operator' must be of type int or float")
         self.operator = operator

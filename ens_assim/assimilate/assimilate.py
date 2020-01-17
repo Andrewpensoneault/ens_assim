@@ -48,13 +48,7 @@ class Assimilate(ABC):
 
         Raises
         ------
-        TypeError
-            If state or measure is not set or incorrect type
         """
-        if not isinstance(state,np.ndarray):
-            raise TypeError("'state' must be of type numpy.ndarray")
-        if not isinstance(measure,Measure):
-            raise TypeError("'measure' must be of type Measure")
 
 class No_Assimilate(Assimilate):
     """
@@ -98,8 +92,6 @@ class SREnKF(Assimilate):
 
         Raises
         ------
-        TypeError
-            If state or measure is not set or incorrect type
         """
         super().analyze(state, measure)
 
@@ -137,6 +129,14 @@ class RSREnKF(Assimilate):
         
     Attributes
     ----------
+    regularize
+        the regularization function
+    regularize_prime
+        the jacobian of the regularization function
+    w_mat
+        the weight matrix associated with the regularization norm
+    lam0 
+        the regularization weight
 
     Methods
     -------
@@ -173,8 +173,6 @@ class RSREnKF(Assimilate):
 
         Raises
         ------
-        TypeError
-            If any parameter is not set or incorrect type
         """
         pass
 
@@ -190,8 +188,6 @@ class RSREnKF(Assimilate):
 
         Raises
         ------
-        TypeError
-            If state or measure is not set or incorrect type
         """
         super().analyze(state, measure)
 
@@ -220,8 +216,6 @@ class EnKF(Assimilate):
 
         Raises
         ------
-        TypeError
-            If state or measure is not set or incorrect type
         """
         super().analyze(state, measure)
         if len(measure.measurement) == 0:
@@ -254,6 +248,12 @@ class SIR(Assimilate):
 
     Attributes
     ----------
+    weights
+        weights for the resampling
+    likelihood
+        likelihood function of the data
+    threshold
+        threshold for effective sample size
 
     Methods
     -------
@@ -261,13 +261,15 @@ class SIR(Assimilate):
         Sets the base weight for each particle
     set_likelihood(likelihood)
         Sets the likelihood function for the data
-    set threshold(threshold)
+    set_threshold(threshold)
         Sets the threshold for effective sample size of the SIR
     analyze(state, measure)
         Performs the assimilation algorithm
     """
     def __init__(self):
-        """Initializes Class
+        """
+        Initializes Class
+
         Parameters
         ----------
         """
@@ -276,7 +278,8 @@ class SIR(Assimilate):
         self.threshold = None
 
     def set_weights(self, weights):
-        """Sets the weights for the particles
+        """
+        Sets the weights for the particles
 
         Parameters
         ----------
@@ -285,15 +288,13 @@ class SIR(Assimilate):
 
         Raises
         ------
-        TypeError
-            If any parameter is not set or incorrect type
         """
-        if not isinstance(weights,np.ndarray):
-            raise TypeError("'weights' must be of type numpy.ndarray")
+
         self.weights = weights
     
     def set_likelihood(self, likelihood):
-        """Sets the likelihood for the data
+        """
+        Sets the likelihood for the data
 
         Parameters
         ----------
@@ -305,8 +306,6 @@ class SIR(Assimilate):
         TypeError
             If any parameter is not set or incorrect type
         """
-        if not isinstance(likelihood,types.LambdaType):
-            raise TypeError("'likelihood' must be of type types.LambdaType")
 
         self.likelihood = likelihood
             
@@ -320,11 +319,9 @@ class SIR(Assimilate):
 
         Raises
         ------
-        TypeError
-            If any parameter is not set or incorrect type
+
         """
-        if not isinstance(threshold,(int,float)):
-            raise TypeError("'likelihood' must be of type int or float")
+
 
         self.threshold = threshold
 
@@ -340,8 +337,6 @@ class SIR(Assimilate):
 
         Raises
         ------
-        TypeError
-            If state or measure is not set or incorrect type
         """
         super().analyze(state, measure)
         if len(measure.measurement) == 0:
