@@ -69,7 +69,7 @@ class Model(ABC):
         """
         pass
 
-class identity(Model):
+class Identity(Model):
     """
     The identity mapping for the initial condition
 
@@ -99,7 +99,7 @@ class identity(Model):
         Raises
         ------
         """
-        super().__init__(self,initial_conditions)
+        super().__init__(initial_conditions)
 
     def advance(self):
         """
@@ -250,7 +250,7 @@ class ODE(Model):
         ------
         """
         state, t = self.solver(self.t0,self.initial_conditions,self.rhs,self.num_steps,self.solver_dict)
-        return state
+        return state, t
 
 
 
@@ -281,24 +281,27 @@ def rk4(t0, x0, rhs, num_steps,solver_dict):
 
     if 'h' not in solver_dict:
         raise KeyError('solver_dict is missing key "h"')
-
+    t0 = np.float(t0)
+    x0 = x0.astype(np.float)
     h = solver_dict['h']
 
     x_dim = x0.shape[0]
     ens_num = x0.shape[1]
 
     x = np.zeros((x_dim,ens_num,num_steps))
+    t = np.zeros(num_steps)
 
     for ens in range(ens_num):
         xi = np.expand_dims(x0[:,ens],1)
+        ti = t0
         for time in range(num_steps):
-            k1 = h*rhs(t0, xi)
-            k2 = h*rhs(t0 + 0.5*h, xi + 0.5*k1)
-            k3 = h*rhs(t0 + 0.5*h, xi + 0.5*k2)
-            k4 = h*rhs(t0 + h, xi + k3)
+            k1 = h*rhs(ti, xi)
+            k2 = h*rhs(ti + 0.5*h, xi + 0.5*k1)
+            k3 = h*rhs(ti + 0.5*h, xi + 0.5*k2)
+            k4 = h*rhs(ti + h, xi + k3)
     
-            xi = xi + (1.0/6.0)*(k1 + 2*k2 + 2*k3 + k4)
-            t = t0 + h
+            xi += (1.0/6.0)*(k1 + 2*k2 + 2*k3 + k4)
+            ti += h
+            t[time] = ti
             x[:,ens,time] = xi.flatten()
-
     return x,t

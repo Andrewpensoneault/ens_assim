@@ -10,7 +10,7 @@ RHO = 28
 BETA = 8/3
 SIGMA = 10
 
-data_std = np.array([3]) 
+data_std = np.array([1.]) 
 obs_dim = [1]
 data_dim = len(obs_dim)
 H = lambda x: x[obs_dim,:]
@@ -20,13 +20,13 @@ rhs = lambda t,x: np.array([SIGMA*(x[1,:]-x[0,:]),x[0,:]*(RHO-x[2,:]),x[0,:]*x[1
 x0 = np.array([[1.1],[1],[1]])
 x_dim = len(x0)
 
-initial_model_std = np.array([5,5,5])
-model_std = np.array([3,3,3])
+initial_model_std = np.array([4.,4.,4.])
+model_std = np.array([3.,3.,3.])
 
 solver = rk4
-solver_dict = {'h':.01}
+solver_dict = {'h':.05}
 
-num_steps = 1000
+num_steps = 200
 ens_num = 10
 t0 = 0
 
@@ -81,17 +81,17 @@ z_err = x_std[2,:]
 
 fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
 fig.suptitle('Plot of analyzed solution / truth with +/- 1 std error bar')
-ax1.fill_between(t, x-x_err, x+x_err,facecolor='r',alpha=0.5)
+ax1.fill_between(t, x-x_err, x+x_err,facecolor='b',alpha=0.5)
 ax1.plot(t, x, label='x_assim')
 ax1.plot(t[1:], truth[0,:], label='x_truth')
 ax1.legend()
 ax1.set_title('t vs x')
-ax2.fill_between(t, y-y_err, y+y_err,facecolor='r',alpha=0.5)
+ax2.fill_between(t, y-y_err, y+y_err,facecolor='b',alpha=0.5)
 ax2.plot(t, y, label='y_assim')
 ax2.plot(t[1:], truth[1,:], label='y_truth')
 ax2.legend()
 ax2.set_title('t vs y')
-ax3.fill_between(t, z-z_err, z+z_err,facecolor='r',alpha=0.5)
+ax3.fill_between(t, z-z_err, z+z_err,facecolor='b',alpha=0.5)
 ax3.plot(t, z, label='z_assim')
 ax3.plot(t[1:], truth[2,:], label='z_truth')
 ax3.set_title('t vs z')

@@ -248,7 +248,7 @@ class EnKF(Assimilate):
         if len(measure.measurement) == 0:
             ens_anal = state
         else:
-            meas_dim = measure.meas_dim 
+            meas_dim = len(measure.measurement)
             ens_num = state.shape[1]
             ens_bg = state
             H = measure.operator
@@ -367,7 +367,8 @@ class SIR(Assimilate):
         Raises
         ------
         """
-        super().analyze(state, measure)
+        weights = self.weights/np.sum(self.weights)
+        
         if len(measure.measurement) == 0:
             ens_anal = state
             weights = self.weights
@@ -381,8 +382,10 @@ class SIR(Assimilate):
                 resample_dist = spstats.rv_discrete(values=(xk,w))
                 choice = resample_dist.rvs(size=ens_num)
                 state = ens_bg[:,choice]
-                w = (1/ens_num)*np.ones((1,ens_num))
+                weights = (1/ens_num)*np.ones((1,ens_num))
                 ens_anal = state
             else:
                 ens_anal = state
-        return ens_anal, weights
+                weights = w
+            self.weights = weights
+        return ens_anal
