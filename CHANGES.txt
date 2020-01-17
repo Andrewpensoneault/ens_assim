@@ -1,1 +1,2 @@
-v0.0.1, <date> -- Initial release.
+January 16, 2020 -- v0.0.1
+    * Initial release.
