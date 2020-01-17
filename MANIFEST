@@ -4,7 +4,6 @@ LICENSE.txt
 README.txt
 setup.py
 bin/lorenz_63.py
-bin/lorenz_96.py
 ens_assim/__init__.py
 ens_assim/calc_stats.py
 ens_assim/perturb.py

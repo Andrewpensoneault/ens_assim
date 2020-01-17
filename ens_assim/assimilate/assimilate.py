@@ -51,6 +51,7 @@ class Assimilate(ABC):
         """
 
 class No_Assimilate(Assimilate):
+    
     """
     The class for performing no data assimilation
 
@@ -62,6 +63,14 @@ class No_Assimilate(Assimilate):
     analyze(state, measure)
         Performs the assimilation algorithm
     """
+    def __init__(self):
+        """
+        Initializes Class
+        
+        Parameters
+        ----------
+        """
+        pass
     def analyze(self,state,measure):
         return state
 
@@ -79,7 +88,14 @@ class SREnKF(Assimilate):
     analyze(state, measure)
         Performs the assimilation algorithm
     """
-
+    def __init__(self):
+        """
+        Initializes Class
+        
+        Parameters
+        ----------
+        """
+        pass
     def analyze(self,state,measure):
         """Performs the SREnKF on state with given measurements
 
@@ -203,7 +219,14 @@ class EnKF(Assimilate):
     analyze(state, measure)
         Performs the assimilation algorithm
     """
-
+    def __init__(self):
+        """
+        Initializes Class
+        
+        Parameters
+        ----------
+        """
+        pass
     def analyze(self,state,measure):
         """Performs the EnKF on state with given measurements
 

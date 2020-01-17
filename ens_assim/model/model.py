@@ -249,14 +249,14 @@ class ODE(Model):
         Raises
         ------
         """
-        state = self.solver(self.t0,self.initial_conditions,self.rhs,self.solver_dict)
+        state, t = self.solver(self.t0,self.initial_conditions,self.rhs,self.num_steps,self.solver_dict)
         return state
 
 
 
 
 
-def RK4(t0, x0, rhs, num_steps,solver_dict):
+def rk4(t0, x0, rhs, num_steps,solver_dict):
     """
     Advances the model forward n step 
     using the solver
@@ -282,23 +282,23 @@ def RK4(t0, x0, rhs, num_steps,solver_dict):
     if 'h' not in solver_dict:
         raise KeyError('solver_dict is missing key "h"')
 
-    t0 = solver_dict['t0']
     h = solver_dict['h']
 
     x_dim = x0.shape[0]
     ens_num = x0.shape[1]
 
-    x = np.zeros(x_dim,ens_num,num_steps)
+    x = np.zeros((x_dim,ens_num,num_steps))
 
     for ens in range(ens_num):
+        xi = np.expand_dims(x0[:,ens],1)
         for time in range(num_steps):
-            k1 = h*rhs(t0, x0)
-            k2 = h*rhs(t0 + 0.5*h, x0 + 0.5*k1)
-            k3 = h*rhs(t0 + 0.5*h, x0 + 0.5*k2)
-            k4 = h*rhs(t0 + h, x0 + k3)
+            k1 = h*rhs(t0, xi)
+            k2 = h*rhs(t0 + 0.5*h, xi + 0.5*k1)
+            k3 = h*rhs(t0 + 0.5*h, xi + 0.5*k2)
+            k4 = h*rhs(t0 + h, xi + k3)
     
-            x0 = x0 + (1.0/6.0)*(k1 + 2*k2 + 2*k3 + k4)
+            xi = xi + (1.0/6.0)*(k1 + 2*k2 + 2*k3 + k4)
             t = t0 + h
-            x[:,ens,time] = x0
+            x[:,ens,time] = xi.flatten()
 
     return x,t
