@@ -97,7 +97,8 @@ class SREnKF(Assimilate):
         """
         pass
     def analyze(self,state,measure):
-        """Performs the SREnKF on state with given measurements
+        """
+        Performs the SREnKF on state with given measurements
 
         Parameters
         ----------
@@ -174,7 +175,8 @@ class RSREnKF(Assimilate):
         self.lam0 = None
 
     def set_regularizer(self, regularize, regularize_prime, w_mat, lam0):
-        """Performs the SREnKF on state with given measurements
+        """
+        Sets the regularization parameters and functions used in the REnKF
 
         Parameters
         ----------
@@ -193,7 +195,8 @@ class RSREnKF(Assimilate):
         pass
 
     def analyze(self,state, measure):
-        """Performs the RSREnKF on state with given measurements
+        """
+        Performs the RSREnKF on state with given measurements
 
         Parameters
         ----------
@@ -228,7 +231,8 @@ class EnKF(Assimilate):
         """
         pass
     def analyze(self,state,measure):
-        """Performs the EnKF on state with given measurements
+        """
+        Performs the EnKF on state with given measurements
 
         Parameters
         ----------
@@ -333,7 +337,8 @@ class SIR(Assimilate):
         self.likelihood = likelihood
             
     def set_threshold(self, threshold):
-        """Sets the weights for the particles
+        """
+        Sets the weights for the particles
 
         Parameters
         ----------
@@ -349,7 +354,8 @@ class SIR(Assimilate):
         self.threshold = threshold
 
     def analyze(self,state,measure):
-        """Performs the SIR on state with given measurements
+        """
+        Performs the SIR on state with given measurements
 
         Parameters
         ----------

@@ -1,33 +1,90 @@
-def_process measure(self):
-        meas = np.zeros((1,0))
-        ind = np.zeros((1,0), dtype='int')
-        R = np.zeros((1,0))
-        cycle = np.zeros((1,0),dtype='int')
-        for j in range(self.smoother_cycles):
-            for i in range(0,self.use_sensor_len):
-                time_now = self.current_time + (60*self.time_interval*(j-self.smoother_cycles+1))
-                current_meas = self.meas_list[self.use_sensor_sensor_index[i]]
-                times = current_meas[:,0]
-                val = current_meas[:,1]
-                inter = np.intersect1d(times,time_now,return_indices=True)
-                meas_index = inter[1]
-                if not len(meas_index) == 0:
-                    m = val[meas_index]
-                    meas = np.append(meas,m)
-                    ind = np.append(ind,i)
-                    cycle = np.append(cycle,j)
-                    R = np.append(R,(m*self.use_std[i])**2)
-        self.meas_dim = meas.size
-        self.meas = np.expand_dims(meas,1)
-        self.R = np.diag(R)
-        tind = self.use_sensor_var_index[ind]
-        self.ctind = tind + cycle*self.total_links*self.link_var_num
-        self.H = lambda X: X[self.ctind,:]
+import unittest
+import numpy as np
+from ens_assim.perturb import absolute_uncorr_perturb, percent_uncorr_perturb
 
-    def __get_sensor_errors(self):
-        self.use_std = np.zeros(self.use_sensor_len)
-        for i in range(0,self.use_sensor_len):
-            cur_sensor_type = self.sensor_list_type[self.use_sensor_sensor_index[i]]
-            inter = np.intersect1d(self.sensor_type_names,cur_sensor_type, return_indices=True)
-            err_type_ind = inter[1]
-            self.use_std[i] = self.sensor_type_p_std[err_type_ind]       
+STATE_1 = np.array([[1.,1.,1.,1.]]).T
+STD_1 = np.array([0.,0.,0.,0.])
+STATE_2 = np.array([[1.,2.],[3.,4.]])
+STD_2 = np.array([.1,.1])
+
+np.random.seed(1)
+PERT_1_1 = STATE_1
+PERT_1_2 = STATE_1
+PERT_2_1 = np.zeros((2,2))
+PERT_2_2 = np.zeros((2,2))
+ERR_2 = np.random.normal(0,1,(2,2))
+for i in range(2):
+    PERT_2_1[:,i] = (np.expand_dims(STATE_2[:,i],1) + np.diag(STD_2) @ np.expand_dims(ERR_2[:,i],1)).flatten()
+    PERT_2_2[:,i] = (np.expand_dims(STATE_2[:,i],1) + np.diag(STATE_2[:,i]*STD_2) @ np.expand_dims(ERR_2[:,i],1)).flatten()
+
+class TestPerturb(unittest.TestCase):
+    """
+    Performs tests on the file calc_stats.py
+
+    Attributes
+    ----------
+
+    Methods
+    -------
+    test_absolute_uncorr_perturb_no_error()
+        Tests the absolute_uncorr_perturb with no error
+    test_percent_uncorr_perturb_no_error()
+        Tests the percent_uncorr_perturb with no error
+    test_absolute_uncorr_perturb_error()
+        Tests the absolute_uncorr_perturb with error
+    test_percent_uncorr_perturb_error()
+        Tests the percent_uncorr_perturb with error
+    """
+    def test_absolute_uncorr_perturb_no_error(self):
+        """
+        Tests the absolute_uncorr_perturb with no error
+
+        Parameters
+        ----------
+
+        Raises
+        ------
+        """
+        state_pert = absolute_uncorr_perturb(STATE_1,STD_1)
+        self.assertTrue(np.all(state_pert==PERT_1_1))
+        
+    def test_percent_uncorr_perturb_no_error(self):
+        """
+        Tests the percent_uncorr_perturb with no error
+
+        Parameters
+        ----------
+
+        Raises
+        ------
+        """
+        state_pert = percent_uncorr_perturb(STATE_1,STD_1)
+        self.assertTrue(np.all(state_pert==PERT_1_2))
+
+    def test_absolute_uncorr_perturb_error(self):
+        """
+        Tests the absolute_uncorr_perturb with error
+
+        Parameters
+        ----------
+
+        Raises
+        ------
+        """
+        np.random.seed(1)
+        state_pert = absolute_uncorr_perturb(STATE_2,STD_2)
+        self.assertTrue(np.all(state_pert==PERT_2_1))
+
+    def test_percent_uncorr_perturb_error(self):
+        """
+        Tests the percent_uncorr_perturb with error
+
+        Parameters
+        ----------
+
+        Raises
+        ------
+        """
+        np.random.seed(1)
+        state_pert = percent_uncorr_perturb(STATE_2,STD_2)
+        self.assertTrue(np.all(state_pert==PERT_2_2))

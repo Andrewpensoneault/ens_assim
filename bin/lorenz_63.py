@@ -10,7 +10,7 @@ RHO = 28
 BETA = 8/3
 SIGMA = 10
 
-data_std = np.array([1]) 
+data_std = np.array([3]) 
 obs_dim = [1]
 data_dim = len(obs_dim)
 H = lambda x: x[obs_dim,:]
@@ -20,8 +20,8 @@ rhs = lambda t,x: np.array([SIGMA*(x[1,:]-x[0,:]),x[0,:]*(RHO-x[2,:]),x[0,:]*x[1
 x0 = np.array([[1.1],[1],[1]])
 x_dim = len(x0)
 
-initial_model_std = np.array([3,3,3])
-model_std = np.array([1,1,1])
+initial_model_std = np.array([5,5,5])
+model_std = np.array([3,3,3])
 
 solver = rk4
 solver_dict = {'h':.01}

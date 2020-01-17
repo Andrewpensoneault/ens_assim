@@ -26,7 +26,9 @@
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><dl><dt><a name="-get_mean"><strong>get_mean</strong></a>(state, weights=None)</dt><dd><tt>Get&nbsp;the&nbsp;mean&nbsp;statistics&nbsp;of&nbsp;the&nbsp;states&nbsp;given&nbsp;weights.&nbsp;<br>
-If&nbsp;weights&nbsp;is&nbsp;not&nbsp;set,&nbsp;assumes&nbsp;equal&nbsp;weight&nbsp;samples<br>
+If&nbsp;weights&nbsp;is&nbsp;not&nbsp;set,&nbsp;assumes&nbsp;equal&nbsp;weight&nbsp;samples.<br>
+We&nbsp;assume&nbsp;the&nbsp;first&nbsp;dimension&nbsp;is&nbsp;state&nbsp;and&nbsp;second&nbsp;is&nbsp;<br>
+the&nbsp;samples<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<br>
 Parameters<br>
 ----------<br>
@@ -40,7 +42,9 @@ Raises<br>
 ------</tt></dd></dl>
  <dl><dt><a name="-get_std"><strong>get_std</strong></a>(state, weights=None)</dt><dd><tt>Get&nbsp;the&nbsp;std&nbsp;statistics&nbsp;of&nbsp;the&nbsp;states&nbsp;given&nbsp;weights.&nbsp;<br>
 If&nbsp;weights&nbsp;is&nbsp;not&nbsp;set,&nbsp;assumes&nbsp;equal&nbsp;weight&nbsp;samples<br>
-&nbsp;<br>
+We&nbsp;assume&nbsp;the&nbsp;first&nbsp;dimension&nbsp;is&nbsp;state&nbsp;and&nbsp;second&nbsp;is&nbsp;<br>
+the&nbsp;samples.&nbsp;Also&nbsp;we&nbsp;use&nbsp;an&nbsp;unbiased&nbsp;standard&nbsp;deviation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
 Parameters<br>
 ----------<br>
 state&nbsp;:&nbsp;np.ndarray<br>

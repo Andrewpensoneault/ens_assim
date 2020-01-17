@@ -14,7 +14,6 @@ ens_assim/measure/measure.py
 ens_assim/model/__init__.py
 ens_assim/model/model.py
 ens_assim/test/assimilate_test.py
-ens_assim/test/measure_test.py
 ens_assim/test/model_test.py
 ens_assim/test/perturb_test.py
 ens_assim/test/statistics_test.py

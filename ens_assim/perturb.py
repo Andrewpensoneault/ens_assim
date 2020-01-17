@@ -42,8 +42,10 @@ def percent_uncorr_perturb(state, percent_std):
     Raises
     ------
     """
+    ens_num = state.shape[1]
+    x_dim = state.shape[0]
+    random_pert = normal(loc = MEAN, scale = STD, size = (x_dim,ens_num))
 
-    return state+state*(diags(percent_std)@normal(loc = MEAN,
-                                                  scale = STD,
-                                                  size = state.shape))
-                
+    for i in range(ens_num):
+        state[:,i] = state[:,i] + (diags(state[:,i]*percent_std)@np.expand_dims(random_pert[:,i],1)).flatten()
+    return state

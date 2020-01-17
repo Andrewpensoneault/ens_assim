@@ -1,4 +1,11 @@
 import unittest
 
-class TestModel(unittest.TestCase):
-    def test_update_initial_condition()
+class TestAssimilate(unittest.TestCase):
+    def test_no_assimilate(self):
+        pass
+    def test_srenkf(self):
+        pass
+    def test_enkf(self):
+        pass
+    def test_sir(self):
+        pass
