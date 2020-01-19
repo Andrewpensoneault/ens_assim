@@ -21,10 +21,6 @@ pip install numpy
 pip install scipy
 ```
 
-To see an example of a scipt using Ens_Assim, look at the lorenz_63.py script
-
-* [Lorenz 63](https://github.com/Andrewpensoneault/ens_assim/blob/master/bin/lorenz_63.py)
-
 ### Installing
 
 To install Ens_Assim, run the following command
@@ -32,17 +28,18 @@ To install Ens_Assim, run the following command
 ```
 pip install git+git://github.com/Andrewpensoneault/ens_assim.git
 ```
+### Example
+
+To see an example of a scipt using Ens_Assim, look at the lorenz_63.py script
+
+* [Lorenz 63](https://github.com/Andrewpensoneault/ens_assim/blob/master/bin/lorenz_63.py)
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+To run the unit tests, run the following command within the ens_assim directory:
 
 ```
-Give an example
+python -m unittest discover -s ./ens_assim/test/ -p "*_test.py"
 ```
 
 ## Contributing
