@@ -8,11 +8,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 To install, you will need pip. Look at the pip documentation for how to install:
-*[Installation](https://pip.pypa.io/en/stable/installing.html)
+* [Installation](https://pip.pypa.io/en/stable/installing.html)
 
 You will need he following packages:
-*numpy >= 1.17.4
-*scipy >= 1.4.1
+* numpy >= 1.17.4
+* scipy >= 1.4.1
 ```
 pip install numpy
 pip install scipy
