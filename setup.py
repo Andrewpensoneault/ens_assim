@@ -10,7 +10,7 @@ setup(
     url='http://pypi.python.org/pypi/Ens_Assim/',
     license='LICENSE.txt',
     description='Ensemble Data Assimilation framework.',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
     install_requires=[
         "numpy >= 1.17.4",
         "scipy >= 1.4.1",
