@@ -8,11 +8,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
+You will need he following packages
 numpy >= 1.17.4
 scipy >= 1.4.1
+```
+pip install numpy
+pip install scipy
 ```
 
 ### Installing
