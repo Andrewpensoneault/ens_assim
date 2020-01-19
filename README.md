@@ -4,7 +4,7 @@ Ens_Assim provides a simple framework to perform ensemble data assimilation for 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 To install, you will need pip. Look at the pip documentation for how to install if you do not already have it:
@@ -20,15 +20,11 @@ pip install scipy
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+To install Ens_Assim, run the following command
 
 ```
 pip install git+git://github.com/Andrewpensoneault/ens_assim.git
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
@@ -41,18 +37,6 @@ Explain what these tests test and why
 ```
 Give an example
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
