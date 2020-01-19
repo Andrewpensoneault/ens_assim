@@ -21,6 +21,10 @@ pip install numpy
 pip install scipy
 ```
 
+To see an example of a scipt using Ens_Assim, look at the lorenz_63.py script
+
+* [Lorenz 63](https://github.com/Andrewpensoneault/ens_assim/blob/master/bin/lorenz_63.py)
+
 ### Installing
 
 To install Ens_Assim, run the following command
