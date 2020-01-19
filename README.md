@@ -9,6 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 To install, you will first need to install Python >= 3.0. This can be found below:
 * [Installation](https://www.python.org/downloads/)
+
 Additionally you will need to install pip. Look at the pip documentation for how to install if you do not already have it:
 * [Installation](https://pip.pypa.io/en/stable/installing.html)
 
