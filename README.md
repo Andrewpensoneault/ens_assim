@@ -1,6 +1,6 @@
 # Ens_Assim
 
-Ens_Assim provides a simple framework to perform ensemble data assimilation for a generic model. See the ./bin/lorenz_63_example.py for a simple example.
+Ens_Assim provides a simple framework to perform ensemble data assimilation for a generic model.
 
 ## Getting Started
 
@@ -72,9 +72,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Andrew Pensoneault** - *Initial work*
 
 ## License
 
