@@ -131,8 +131,12 @@ class SREnKF(Assimilate):
             m_anal = x_mean + K @ (y0 - H(x_mean))
             
             T = np.linalg.inv(np.eye(ens_num,ens_num) + (Yb.T @ np.linalg.solve(R,Yb)))
-            Tsqrt = scipy.linalg.cholesky(T)           
-            
+
+            try:
+                Tsqrt = scipy.linalg.cholesky(T)           
+            except:
+                Tsqrt = scipy.linalg.sqrtm(T)
+                            
             X_anal =  Xb@Tsqrt
  
             ens_anal = np.real(m_anal + np.sqrt(ens_num-1)*X_anal) #removes any complex part introduced from eig
