@@ -4,63 +4,43 @@ Ens_Assim provides a simple framework to perform ensemble data assimilation for 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
+To install, you will first need to install Python >= 3.0. This can be found below:
+* [Download](https://www.python.org/downloads/)
 
-What things you need to install the software and how to install them
+Additionally you will need to install pip. Look at the pip documentation for how to install if you do not already have it:
+* [Installation](https://pip.pypa.io/en/stable/installing.html)
 
+You will need the following packages:
+* numpy >= 1.17.4
+* scipy >= 1.4.1
 ```
-Give examples
+pip install numpy
+pip install scipy
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+To install Ens_Assim, run the following command
 
 ```
-Give the example
+pip install git+git://github.com/Andrewpensoneault/ens_assim.git
 ```
+### Example
 
-And repeat
+To see an example of a scipt using Ens_Assim, look at the lorenz_63.py script
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+* [Lorenz 63](https://github.com/Andrewpensoneault/ens_assim/blob/master/bin/lorenz_63.py)
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+To run the unit tests, run the following command within the ens_assim directory:
 
 ```
-Give an example
+python -m unittest discover -s ./ens_assim/test/ -p "*_test.py"
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
@@ -77,10 +57,3 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
