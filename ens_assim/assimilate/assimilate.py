@@ -381,6 +381,7 @@ class SIR(Assimilate):
             ens_num = state.shape[1]
             w = self.weights*self.likelihood(ens_bg)
             w = w/np.sum(w)
+            w = w.flatten()
             if (1/np.sum(w**2) < self.threshold):
                 xk = np.arange(ens_num)
                 resample_dist = spstats.rv_discrete(values=(xk,w))
